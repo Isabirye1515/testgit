@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <title>Videos</title>
+</head>
+
+<body>
+    <h4><i><marquee>Designed as a media application</marquee></i></h4>
+    <table>
+        <tr align="top">
+            <td>
+                <b>Select video file:</b><br>
+                <input type="file" name="video" id="videoInput" accept="video/*"><br>
+
+                <video id="videoPlayer" height="1250" width="1250" controls poster="MEDIA/A.gif">
+                    <source id="videoSource" type="video/mp4">
+                </video><br>
+
+                <b>Select audio file:</b><br>
+                <input type="file" name="audio" id="audioInput" accept="audio/*"><br>
+
+                <audio id="audioPlayer" controls>
+                    <source id="audioSource" type="audio/mp3">
+                </audio>
+            </td>
+        </tr>
+    </table>
+
+    <script>
+        document.getElementById('videoInput').addEventListener('change', function (e) {
+            var videoPlayer = document.getElementById('videoPlayer');
+            var videoSource = document.getElementById('videoSource');
+            var file = e.target.files[0];
+            
+            if (file) {
+                var objectURL = URL.createObjectURL(file);
+                videoSource.src = objectURL;
+                videoPlayer.load();
+            }
+        });
+
+        document.getElementById('audioInput').addEventListener('change', function (e) {
+            var audioPlayer = document.getElementById('audioPlayer');
+            var audioSource = document.getElementById('audioSource');
+            var file = e.target.files[0];
+            
+            if (file) {
+                var objectURL = URL.createObjectURL(file);
+                audioSource.src = objectURL;
+                audioPlayer.load();
+            }
+        });
+    </script>
+</body>
+
+</html>
